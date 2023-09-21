@@ -72,7 +72,6 @@ The mapping table SHALL be a text string, containing zero or more mapping entrie
 | 4 | **Link** | A URL that MAY contain one or more instances of each of the following text placeholders `{issuer}`, `{category}` or `{identifier}`. When replacing the placeholders with the appropriate values from a PAC-ID, the result MUST become a valid browsable link (i.e. HTTPS URL). Note: The `identifier` value of the PAC-ID MUST be URL encoded first before inserting into the placeholder. |
 | 5 | **Display Name** | The display name is describing this entry in human readable, US-English language. Containing letters, numbers, spaces or hyphens (“-”) only and MUST NOT contain more than 255 characters. Can also be the empty string. |
 
-
 #### Example Mapping Table
     # This is a comment
     Issuer -> Category -> Intent -> Link -> Display Name
@@ -81,18 +80,23 @@ The mapping table SHALL be a text string, containing zero or more mapping entrie
     # ... more entries ...`
 `->` denotes a tab character.
 
-
 ## Terminology Used
-
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
 
 ## FAQ
-**Q: xxx?**
+**Q: Where to find the URLs for the** Link **column?**
+**A:** Copy the link from the address bar of your browser. Most of the time, such links are self-explaining. If in doubt, ask your vendor about so-called perma-links or a link scheme.
 
-**A:** yyy.
+**Q: Is there something like authentication?**
+**A:** If a link to your system requires authentication, normal authentication takes place always, independent of how you navigate to this link.
+
+**Q: What if a mapping URL is changing?**
+**A:** Update the mapping table. Use a local override, like a user or corporate mapping table if needed.
+
+**Q: How to use only a part of the id or category in placeholders?**
+**A:** This is currently not foreseen / possible.
 
 ## License
-
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a
