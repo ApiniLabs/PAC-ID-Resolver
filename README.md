@@ -85,15 +85,19 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## FAQ
 **Q: Where to find the URLs for the** Link **column?**
+
 **A:** Copy the link from the address bar of your browser. Most of the time, such links are self-explaining. If in doubt, ask your vendor about so-called perma-links or a link scheme.
 
 **Q: Is there something like authentication?**
+
 **A:** If a link to your system requires authentication, normal authentication takes place always, independent of how you navigate to this link.
 
 **Q: What if a mapping URL is changing?**
+
 **A:** Update the mapping table. Use a local override, like a user or corporate mapping table if needed.
 
 **Q: How to use only a part of the id or category in placeholders?**
+
 **A:** This is currently not foreseen / possible.
 
 ## License
