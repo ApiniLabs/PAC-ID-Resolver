@@ -2,7 +2,7 @@
 
 ## What Is the `PAC-ID Resolver`?
 > [!TIP]
-> A `PAC-ID Resolver` (or **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**) is a ...:
+> A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a tool designed to convert a given `PAC-ID` into a URL. This URL can then be utilized to access additional information associated with the corresponding `PAC-ID`.
 
 ## Introduction
 In laboratory workflows, it is often necessary to utilize multiple software applications and devices. Dealing with chemicals, samples, and instruments requires a seamless exchange of contextual data between these applications and devices, significantly benefiting scientists and lab technicians.
@@ -66,13 +66,21 @@ Mapping table entries MAY contain placeholders in the **Link** column. Replace t
 
 ### Mapping Table Format
 
-| **Column #** | **Column Name** | **Comment** |
+It is RECOMMENDED to encode mapping tables using UTF-8 encoding.
+
+| **Column #** | **Column Name** | **Description** |
 | :--- | :--- | :--- |
-| 1 | **Issuer** | A PAC-ID “`issuer`“ or “`*`", which matches any issuer. |
-| 2 | **Category** | A PAC-ID “`category`" or ”`*`", which matches any category. |
-| 3 | **Intent** | The intent provides a hint / additional information related to the context in which the link should be used. The intent is comparable to a file type on a file system and may consist of a maximum of 64 characters. MUST match the regular expression ^[A-Za-z0-9-]{0,64}$. It can also be the empty string. Note: Intents ending with “`-public`" SHALL be reserved for future use. |
-| 4 | **Link** | A URL that MAY contain one or more instances of each of the following text placeholders `{issuer}`, `{category}` or `{identifier}`. When replacing the placeholders with the appropriate values from a PAC-ID, the result MUST become a valid browsable link (i.e. HTTPS URL). Note: The `identifier` value of the PAC-ID MUST be URL encoded first before inserting into the placeholder. |
-| 5 | **Display Name** | The display name is describing this entry in human readable, US-English language. Containing letters, numbers, spaces or hyphens (“-”) only and MUST NOT contain more than 255 characters. Can also be the empty string. |
+| 1 | **Service Name** | Describes the entry in human readable, US-English language. SHALL contain only letters `a-zA-Z`, numbers `0-9`, spaces ` ` or hyphens `-`. MUST contain at least one but not more than 255 characters. |
+| 2 | **User Intent**  | List of intents that can be fulfilled by this entry.<br>CAN be empty.<br>Intents are usually specified by the calling application and a corresponding matching allows a precise routing to the most adequate service available.<br>Multiple intents MUST be separated by `;`<br>Intents ending with `-generic` SHALL be reserved for future use.<br>Each intent MUST match the regular expression `^[A-Za-z0-9-]{0,64}$`. |
+| 3 | **Service Type** | Can be one of the following:<ul><li>`userhandover-generic`: The resolved URL MUST be a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file). The resolved URL MUST NOT lead to service endpoint, e.g. a RESTful API.</li><li>`attributes-generic`: The resolved URL MUST lead to an [Attributes Service](https://github.com/ApiniLabs/Attributes-Service) endpoint.</li></ul> |
+| 4 | **Applicable If** |  |
+| 5 | **Template Url** |  |
+
+#### Rules
+
+
+#### Placeholders
+
 
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
