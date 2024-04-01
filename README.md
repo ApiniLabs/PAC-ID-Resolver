@@ -9,60 +9,66 @@ In laboratory workflows, it is often necessary to utilize multiple software appl
 
 The conventional approach involves interfacing applications and devices with each other. Unfortunately, due to the lack of standardized support, such interfaces usually require bespoke software development or customization projects, demanding substantial effort to create and maintain.
 
-The PAC-ID resolver architecture introduced here offers an alternative and lightweight solution for implementing handover between applications and devices in a loosely coupled manner, providing an exceptional user experience.
+The `PAC-ID Resolver` architecture introduced below offers an alternative and lightweight solution for implementing handover between applications and devices in a loosely coupled manner, providing an exceptional user experience.
 
-By utilizing PAC-IDs to identify chemicals, samples, and instruments, the PAC-ID resolver architecture supports the efficient conversion from a PAC-ID into a browsable link that directs users to the application most relevant to the current workflow context.
+By utilizing `PAC-ID`s to identify chemicals, samples, and instruments, the `PAC-ID Resolver` architecture supports the efficient conversion from a `PAC-ID` into a URL, depending on the current workflow context. The URL can then be used to direct users to the application most relevant or to retrieve additional information.
 
 ![User perspective on PAC-ID resolver](images/pac-id-resolver-user-perspective.png)
 
-*User Perspective: Example of resolving a PAC-ID of a  “material XY” within a LIMS system and forwarding the user to the corresponding structural info in the ELN*
+*User Perspective: Example of resolving a `PAC-ID` of a  “material XY” within a LIMS system and forwarding the user to the corresponding structural info in the ELN.*
 
-The PAC-ID resolver architecture has been designed with the following design goals:
-- **Decentralized operation**: The PAC-ID resolver architecture should be able to operate independently without relying on a central registry.
-- **Local customization**: It should allow local overrides of PAC-ID to link conversion mechanisms, enabling customization for local context specific needs.
-- **Flexibility and independence**: The PAC-ID resolver architecture should function without strict governance, providing flexibility and independence in its operation.
+The `PAC-ID Resolver` architecture has been designed with the following design goals:
+- **Decentralized operation**: A `PAC-ID Resolver`  should be able to operate independently without relying on a central registry.
+- **Local customization**: It should allow local overrides of `PAC-ID` to URL conversion mechanisms, enabling customization for local context specific needs.
+- **Flexibility and independence**: A `PAC-ID Resolver`  should function without strict governance, providing flexibility and independence in its operation.
 - **Isolated network compatibility**: It should be capable of operating effectively in isolated networks, even with limited or no connectivity to external resources.
 
-## Architectural Overview and Scope
-The process of resolving a PAC-ID into a browsable link follows these steps, as illustrated below:
-1. The source application sends a PAC-ID to the PAC-ID resolver
-2. The resolver looks up mapping tables
-3. The resolver selects entries in the mapping tables that match the PAC-ID and substitutes existing variables (see below)
-4. The resolver returns an ordered list, sorted by relevance of browsable links, display names and intents to the source application
-5. The source application selects the most appropriate link based on the returned of browsable links, display names and intents, considering additional context-dependent or user-provided information
+## `PAC-ID Resolver` Architectural Overview and Scope
+
+A `PAC-ID Resolver` is a program, service or library that transforms a `PAC-ID` into a URL, based on a mapping table and optionally additional information, like a **User Intent**.
+
+The process of resolving a `PAC-ID` into a URL follows these steps, as illustrated below:
+
+1. The end user software application submits a `PAC-ID` to a `PAC-ID Resolver`
+2. The `PAC-ID Resolver` looks up mapping tables
+3. The `PAC-ID Resolver` selects entries in the mapping tables that match the `PAC-ID` and substitutes variables
+4. The `PAC-ID Resolver` returns a list of **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s, 
 
 ![PAC-ID resolver architecture](images/pac-id-resolver-architectural-overview.png)
 
 *Architectural overview of resolving a PAC-ID into a browsable link.*
 
 ## Specification
-A PAC-ID resolver is a service or library used by a source application to resolve a PAC-ID into one or more browsable link(s). 
+A `PAC-ID Resolver` is a program, service or library used by a end user software application to resolve a PAC-ID into a (list of) URL(s). 
 
-A PAC-ID resolver expects a PAC-ID as input. In order to resolve the PAC-ID, the PAC-ID resolver uses one or more mapping table(s). It selects all entries that match the current PAC-ID and substitutes information in these resolved entries. After completion, it returns a list of zero or more browsable links in conjunction with display names and intents to the source application.
+A `PAC-ID Resolver` expects a `PAC-ID` as input. In order to resolve the `PAC-ID`, the `PAC-ID Resolver` uses one or more mapping table(s). It selects all entries that match the current `PAC-ID` and substitutes information in these resolved entries. After completion, it returns a list of zero or more **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s.
 
-The PAC-ID resolver performs the following steps:
+The `PAC-ID Resolver` performs the following steps:
 1. Retrieve mapping table(s)
-2. Match the PAC-ID to the entries in the mapping table(s) and select matching entries
-3. Substitute the variables in the matching entries (see below)
-4. Return an ordered list of browsable links, display names and intents, derived from all matching entries. The order SHALL correspond to the source of the matching entry (user, corporate or global mapping table, in this order of precedence)
+2. Match the `PAC-ID` to the entries in the mapping table(s) and select matching entries
+3. Substitute the variables in the matching entries
+4. Return an ordered list of **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s
 
-### Retrieving Mapping Table(s)
+### 1. Retrieving Mapping Table(s)
 The following methods SHALL be used to retrieve mapping table(s).
 
-#### User Mapping Table
+#### 1.1 User Mapping Table
 The user mapping table SHALL be retrieved by reading a file or via a HTTP GET request to an URL. The file or URL SHALL be configurable. It is RECOMMENDED as a best practice to use a local file called “`pac.mapping`", located in the user's home directory.
 
-#### Corporate Mapping Table
+#### 1.2 Corporate Mapping Table
 The corporate mapping SHALL be retrieved by reading a file or via a HTTP GET request to an URL. The file or URL SHALL be configurable. It is RECOMMENDED as a best practice to use the URL “`pac.local/pac.mapping`".
 
-#### Global Mapping Table
+#### 1.3 Global Mapping Table
 The global mapping table SHALL be retrieved via a HTTP GET request to the URL “`pac.{issuer}/pac.mapping`”. Where “`issuer`“ MUST be replaced by the appropriate value from the PAC-ID.
 
-### Matching PAC-ID to Entries in the Mapping Table
-To identify matching entries in a mapping table, compare the PAC-ID’s issuer and category against the **Issuer** and **Category** columns of the mapping table.
+### 2. Matching PAC-ID to Entries in the Mapping Table
+To identify matching entries by evaluating the **Applicable If** column of all found mapping tables.
 
-### Substituting Variables
+### 3. Substituting Variables
 Mapping table entries MAY contain variables in the **Template Url** column. Replace the varaibles with the corresponding values given by the PAC-ID by performing a text replacement.
+
+### 4. Returning
+Return an ordered list of **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s, derived from all matching entries of all found mapping tables. The order SHALL correspond to the source of the matching entry (user, corporate or global mapping table, in this order of precedence) and the order within each mapping table.
 
 ### Mapping Table Format
 
@@ -112,7 +118,7 @@ The first non-comment row MUST contain a header, composed of the column names fr
 For **Template Url** and **Applicable If** colums, the `variable`s outlined below MAY be used.
 
 > [!NOTE]
-> The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example:
+> The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example for the **Example** column below:
 > ```
 > HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211
 > ```
