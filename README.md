@@ -1,4 +1,7 @@
-# PAC-ID Resolver (DRAFT)
+# PAC-ID Resolver
+
+## What Is the `PAC-ID Resolver`?
+
 
 ## Introduction
 In laboratory workflows, it is often necessary to utilize multiple software applications and devices. Dealing with chemicals, samples, and instruments requires a seamless exchange of contextual data between these applications and devices, significantly benefiting scientists and lab technicians.
