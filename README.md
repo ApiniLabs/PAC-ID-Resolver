@@ -34,7 +34,7 @@ The process of resolving a `PAC-ID` into a URL follows these steps, as illustrat
 3. The `PAC-ID Resolver` selects entries in the mapping tables that match the `PAC-ID` and substitutes variables
 4. The `PAC-ID Resolver` returns a list of **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s, 
 
-![PAC-ID resolver architecture](images/pac-id-resolver-architectural-overview.png)
+![PAC-ID resolver architecture](images/pac-id-resolver-architectural-overview.svg)
 
 *Architectural overview of resolving a PAC-ID into a browsable link.*
 
