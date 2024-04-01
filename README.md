@@ -27,7 +27,7 @@ The PAC-ID resolver architecture has been designed with the following design goa
 The process of resolving a PAC-ID into a browsable link follows these steps, as illustrated below:
 1. The source application sends a PAC-ID to the PAC-ID resolver
 2. The resolver looks up mapping tables
-3. The resolver selects entries in the mapping tables that match the PAC-ID and substitutes existing placeholders (see below)
+3. The resolver selects entries in the mapping tables that match the PAC-ID and substitutes existing variables (see below)
 4. The resolver returns an ordered list, sorted by relevance of browsable links, display names and intents to the source application
 5. The source application selects the most appropriate link based on the returned of browsable links, display names and intents, considering additional context-dependent or user-provided information
 
@@ -43,7 +43,7 @@ A PAC-ID resolver expects a PAC-ID as input. In order to resolve the PAC-ID, the
 The PAC-ID resolver performs the following steps:
 1. Retrieve mapping table(s)
 2. Match the PAC-ID to the entries in the mapping table(s) and select matching entries
-3. Substitute the placeholders in the matching entries (see below)
+3. Substitute the variables in the matching entries (see below)
 4. Return an ordered list of browsable links, display names and intents, derived from all matching entries. The order SHALL correspond to the source of the matching entry (user, corporate or global mapping table, in this order of precedence)
 
 ### Retrieving Mapping Table(s)
@@ -61,8 +61,8 @@ The global mapping table SHALL be retrieved via a HTTP GET request to the URL �
 ### Matching PAC-ID to Entries in the Mapping Table
 To identify matching entries in a mapping table, compare the PAC-ID’s issuer and category against the **Issuer** and **Category** columns of the mapping table.
 
-### Substituting Placeholders
-Mapping table entries MAY contain placeholders in the **Link** column. Replace the placeholders with the corresponding values given by the PAC-ID by performing a text replacement.
+### Substituting Variables
+Mapping table entries MAY contain variables in the **Template Url** column. Replace the varaibles with the corresponding values given by the PAC-ID by performing a text replacement.
 
 ### Mapping Table Format
 
@@ -74,11 +74,11 @@ It is RECOMMENDED to encode mapping tables using UTF-8 encoding.
 | 2 | **User Intent**  | List of intents that can be fulfilled by this entry.<br>CAN be empty.<br>Intents are usually specified by the calling application and a corresponding matching allows a precise routing to the most adequate service available.<br>Multiple intents MUST be separated by `;`<br>Intents ending with `-generic` SHALL be reserved for future use.<br>Each intent MUST match the regular expression `^[A-Za-z0-9-]{0,64}$`. |
 | 3 | **Service Type** | MUST be one of the following:<ul><li>`userhandover-generic`: The resolved URL MUST be a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file). The resolved URL MUST NOT lead to service endpoint, e.g. a RESTful API.</li><li>`attributes-generic`: The resolved URL MUST lead to an [Attributes Service](https://github.com/ApiniLabs/Attributes-Service) endpoint.</li></ul> |
 | 4 | **Applicable If** | A list of `rule`s a `PAC-ID` SHOULD fulfil in order to be relevant for the service.<br>CAN be empty.<br>Multiple `rule`s MUST be separated by `;`. All `rule`s MUST match if multiple `rule`s are specified (AND logic - for OR logic simply create additional rows.)<br>Matching SHALL be case-insensitive. |
-| 5 | **Template Url** | A URL that points to the service outlined in this entry.<br>MAY contain one or more instances of a `placeholder`. The **Template Url** is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `placeholder` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*".<br>When replacing the `placeholder`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
+| 5 | **Template Url** | A URL that points to the service outlined in this entry.<br>MAY contain one or more instances of a `variable`. The **Template Url** is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*".<br>When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
 
-#### Placeholders
+#### Variables
 
-For **Template Url** and **Applicable If** colums, the placeholders outlined below MAY be used.
+For **Template Url** and **Applicable If** colums, the `variable`s outlined below MAY be used.
 
 > [!NOTE]
 > The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example:
@@ -86,7 +86,7 @@ For **Template Url** and **Applicable If** colums, the placeholders outlined bel
 > HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211
 > ```
 
-| **Placeholder** | **Description** | **Example** |
+| **Variable** | **Description** | **Example** |
 | :--- | :--- | :--- |
 | {isu} | The `issuer` of the `PAC-ID` | {isu} → METTORIUS.COM |
 | {pac} | The complete `PAC-ID` in URL representation (without extensions) | {pac} → HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263 |
@@ -100,7 +100,7 @@ For **Template Url** and **Applicable If** colums, the placeholders outlined bel
 
 #### Rules
 
-In the context of this specification, a `rule` consists of a `placeholder` followed by an `=` sign and a `value`, serving for comparison against a specific value the `placeholder` refers to inside the `PAC-ID`. Alternatively, if a value for the `placeholder` merely needs to exist without specifying an exact value, the placeholder can stand alone without an assigned value.
+In the context of this specification, a `rule` consists of a `variable` followed by an `=` sign and a `value`, serving for comparison against a specific value the `variable` refers to inside the `PAC-ID`. Alternatively, if a value for the `variable` merely needs to exist without specifying an exact value, the `variable` can stand alone without an assigned value.
 
 > [!NOTE]
 > Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having any non-empty `id segment value` available for the `id segment key` "21":
