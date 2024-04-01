@@ -1,7 +1,8 @@
 # PAC-ID Resolver
 
 ## What Is the `PAC-ID Resolver`?
-
+> [!TIP]
+> A `PAC-ID Resolver` (or **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**) is a ...:
 
 ## Introduction
 In laboratory workflows, it is often necessary to utilize multiple software applications and devices. Dealing with chemicals, samples, and instruments requires a seamless exchange of contextual data between these applications and devices, significantly benefiting scientists and lab technicians.
@@ -22,11 +23,6 @@ The PAC-ID resolver architecture has been designed with the following design goa
 - **Flexibility and independence**: The PAC-ID resolver architecture should function without strict governance, providing flexibility and independence in its operation.
 - **Isolated network compatibility**: It should be capable of operating effectively in isolated networks, even with limited or no connectivity to external resources.
 
-## Specification
-A PAC-ID resolver is a service or library used by a source application to resolve a PAC-ID into one or more browsable link(s). 
-
-A PAC-ID resolver expects a PAC-ID as input. In order to resolve the PAC-ID, the PAC-ID resolver uses one or more mapping table(s). It selects all entries that match the current PAC-ID and substitutes information in these resolved entries. After completion, it returns a list of zero or more browsable links in conjunction with display names and intents to the source application.
-
 ## Architectural Overview and Scope
 The process of resolving a PAC-ID into a browsable link follows these steps, as illustrated below:
 1. The source application sends a PAC-ID to the PAC-ID resolver
@@ -39,7 +35,11 @@ The process of resolving a PAC-ID into a browsable link follows these steps, as 
 
 *Architectural overview of resolving a PAC-ID into a browsable link.*
 
-## PAC-ID Resolver
+## Specification
+A PAC-ID resolver is a service or library used by a source application to resolve a PAC-ID into one or more browsable link(s). 
+
+A PAC-ID resolver expects a PAC-ID as input. In order to resolve the PAC-ID, the PAC-ID resolver uses one or more mapping table(s). It selects all entries that match the current PAC-ID and substitutes information in these resolved entries. After completion, it returns a list of zero or more browsable links in conjunction with display names and intents to the source application.
+
 The PAC-ID resolver performs the following steps:
 1. Retrieve mapping table(s)
 2. Match the PAC-ID to the entries in the mapping table(s) and select matching entries
@@ -65,7 +65,6 @@ To identify matching entries in a mapping table, compare the PAC-ID’s issuer a
 Mapping table entries MAY contain placeholders in the **Link** column. Replace the placeholders with the corresponding values given by the PAC-ID by performing a text replacement.
 
 ### Mapping Table Format
-The mapping table SHALL be a text string, containing zero or more mapping entries (rows), separated by “`newline`" and formatted with “`tab`" delimited columns as follows. When serializing into a file or into a binary stream or array, the contents SHALL be encoded using UTF-8 encoding. Lines starting with the “`#`" character SHALL be ignored and treated as comments until the next “`newline`". The first non-comment row MUST contain a header, composed of the column names from the table below, delimited by "`tab`" and ended by “`newline`":
 
 | **Column #** | **Column Name** | **Comment** |
 | :--- | :--- | :--- |
@@ -75,33 +74,10 @@ The mapping table SHALL be a text string, containing zero or more mapping entrie
 | 4 | **Link** | A URL that MAY contain one or more instances of each of the following text placeholders `{issuer}`, `{category}` or `{identifier}`. When replacing the placeholders with the appropriate values from a PAC-ID, the result MUST become a valid browsable link (i.e. HTTPS URL). Note: The `identifier` value of the PAC-ID MUST be URL encoded first before inserting into the placeholder. |
 | 5 | **Display Name** | The display name is describing this entry in human readable, US-English language. Containing letters, numbers, spaces or hyphens (“-”) only and MUST NOT contain more than 255 characters. Can also be the empty string. |
 
-#### Example Mapping Table
-    # This is a comment
-    Issuer -> Category -> Intent -> Link -> Display Name
-    apinilabs.com -> myapp -> calibration -> https://app.apinilabs.com/{category}/{identifier} -> Calibration Log
-    domain.com  -> inventory -> * -> https://domain.com/app/{category}?ident={identifier} -> Inventory System
-    # ... more entries ...`
-`->` denotes a tab character.
-
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
 
 ## FAQ
-**Q: Where to find the URLs for the** Link **column?**
-
-**A:** Copy the link from the address bar of your browser. Most of the time, such links are self-explaining. If in doubt, ask your vendor about so-called perma-links or a link scheme.
-
-**Q: Is there something like authentication?**
-
-**A:** If a link to your system requires authentication, normal authentication takes place always, independent of how you navigate to this link.
-
-**Q: What if a mapping URL is changing?**
-
-**A:** Update the mapping table. Use a local override, like a user or corporate mapping table if needed.
-
-**Q: How to use only a part of the id or category in placeholders?**
-
-**A:** This is currently not foreseen / possible.
 
 ## License
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
