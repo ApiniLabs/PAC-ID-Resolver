@@ -53,15 +53,15 @@ The `PAC-ID Resolver` performs the following steps:
 The following methods SHALL be used to retrieve mapping table(s).
 
 #### 1.1 User Mapping Table
-The user mapping table SHALL be retrieved by reading a file or via a HTTP GET request to an URL. The file or URL SHALL be configurable. It is RECOMMENDED as a best practice to use a local file called “`pac.mapping`", located in the user's home directory.
+The **User Mapping Table** SHALL be retrieved by reading a file or via a HTTP GET request to a URL. The file or URL SHALL be configurable. It is RECOMMENDED to use a local file called “`pac.mapping`", located in the user's home directory.
 
 #### 1.2 Corporate Mapping Table
-The corporate mapping SHALL be retrieved by reading a file or via a HTTP GET request to an URL. The file or URL SHALL be configurable. It is RECOMMENDED as a best practice to use the URL “`pac.local/pac.mapping`".
+The **Corporate Mapping Table** SHALL be retrieved by reading a file or via a HTTP GET request to a URL. The file or URL SHALL be configurable. It is RECOMMENDED to use the URL “`pac.local/pac.mapping`".
 
 #### 1.3 Global Mapping Table
-The global mapping table SHALL be retrieved via a HTTP GET request to the URL “`pac.{issuer}/pac.mapping`”. Where “`issuer`“ MUST be replaced by the appropriate value from the PAC-ID.
+The **Global Mapping Table** table SHALL be retrieved via a HTTP GET request to the URL “`pac.{issuer}/pac.mapping`”. Where “`issuer`“ MUST be replaced by the appropriate value from the `PAC-ID`.
 
-### 2. Matching PAC-ID to Entries in the Mapping Table
+### 2. Matching the `PAC-ID` to Entries in the Mapping Table
 To identify matching entries by evaluating the **Applicable If** column of all found mapping tables.
 
 ### 3. Substituting Variables
