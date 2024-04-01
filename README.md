@@ -1,6 +1,6 @@
 # PAC-ID Resolver
 
-## What Is the `PAC-ID Resolver`?
+## What Is a `PAC-ID Resolver`?
 > [!TIP]
 > A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a tool designed to convert a given `PAC-ID` into a URL. This URL can then be utilized to access additional information associated with the corresponding `PAC-ID`.
 
@@ -72,15 +72,35 @@ It is RECOMMENDED to encode mapping tables using UTF-8 encoding.
 | :--- | :--- | :--- |
 | 1 | **Service Name** | Describes the entry in human readable, US-English language. SHALL contain only letters `a-zA-Z`, numbers `0-9`, spaces ` ` or hyphens `-`. MUST contain at least one but not more than 255 characters. |
 | 2 | **User Intent**  | List of intents that can be fulfilled by this entry.<br>CAN be empty.<br>Intents are usually specified by the calling application and a corresponding matching allows a precise routing to the most adequate service available.<br>Multiple intents MUST be separated by `;`<br>Intents ending with `-generic` SHALL be reserved for future use.<br>Each intent MUST match the regular expression `^[A-Za-z0-9-]{0,64}$`. |
-| 3 | **Service Type** | Can be one of the following:<ul><li>`userhandover-generic`: The resolved URL MUST be a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file). The resolved URL MUST NOT lead to service endpoint, e.g. a RESTful API.</li><li>`attributes-generic`: The resolved URL MUST lead to an [Attributes Service](https://github.com/ApiniLabs/Attributes-Service) endpoint.</li></ul> |
-| 4 | **Applicable If** |  |
-| 5 | **Template Url** |  |
-
-#### Rules
-
+| 3 | **Service Type** | MUST be one of the following:<ul><li>`userhandover-generic`: The resolved URL MUST be a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file). The resolved URL MUST NOT lead to service endpoint, e.g. a RESTful API.</li><li>`attributes-generic`: The resolved URL MUST lead to an [Attributes Service](https://github.com/ApiniLabs/Attributes-Service) endpoint.</li></ul> |
+| 4 | **Applicable If** | A list of `rule`s a `PAC-ID` SHOULD fulfil in order to be relevant for the service.<br>CAN be empty.<br>Multiple `rule`s MUST be separated by `;`. All `rule`s MUST match if multiple `rule`s are specified (AND logic - for OR logic simply create additional rows.)<br>Matching SHALL be case-insensitive. |
+| 5 | **Template Url** | A URL that points to the service outlined in this entry.<br>MAY contain one or more instances of a `placeholder`.<br>When replacing the `placeholder`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
 
 #### Placeholders
 
+For **Template Url** and **Applicable If** colums, the placeholders outlined below MAY be used.
+
+> [!NOTE]
+> The following `PAC-ID` (with [T-REX](https://github.com/ApiniLabs/T-REX) extension) is used as example:
+> ```
+> HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211
+> ```
+
+| **Placeholder** | **Description** | **Example** |
+| :--- | :--- | :--- |
+| {isu} | The `issuer` of the `PAC-ID` | {isu} → METTORIUS.COM |
+| {pac} | The complete `PAC-ID` in URL representation (without extensions) | {pac} → HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263 |
+| {id} | The `identifier` of the `PAC-ID` | {id} → DEVICE/21:210263 |
+| {idSegN} | The Nth `id segment` of the `PAC-ID` | {idSeg2} → 21:210263 |
+| {idValFOO} | The `id segmend value` of the `id segment` with `id segment key` "FOO".  | {idVal21} → 210263 |
+| {ext} | All extensions separated by `*`. | {ext} → 11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211 |
+| {extN} | The Nth extension. | {ext1} → 11$T.D:20231121+FOO$T.A:BAR |
+| {extNSegM} | The Mth segment of the Nth extension. | {ext1Seg1} → 11$T.D:20231121 |
+| {extNValFOO} | The value of the extension segment with key "FOO" of the Nth extension. | {ext1Val11$T.D} → 20231121 |
+
+#### Rules
+
+In the context of this specification, a `rule` consists of a `placeholder` followed by an `=` sign and a `value`, serving for comparison against a specific value the `placeholder` refers to inside the `PAC-ID`. Alternatively, if a value for the `placeholder` merely needs to exist without specifying an exact value, the placeholder can stand alone without an assigned value.
 
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
