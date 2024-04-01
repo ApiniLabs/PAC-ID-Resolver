@@ -49,6 +49,9 @@ The `PAC-ID Resolver` performs the following steps:
 3. Substitute the variables in the matching entries
 4. Return an ordered list of **Service Name**s, **User Intent**s, **Service Type**s and resolved **URL**s
 
+> [!TIP]
+> To enhance performance and user experience, consider integrating the `PAC-ID Resolver` within the end-user software application. This enables asynchronous and parallel execution of steps 1-4, allowing users to receive resolved URLs promptly, even as mapping table(s) are being loaded. Since fetching mapping tables may incur delays or become impossible due to network issues, it's advisable for `PAC-ID Resolver`s to incorporate intelligent caching mechanisms as a best practice.
+
 ### 1. Retrieving Mapping Table(s)
 The following methods SHALL be used to retrieve mapping table(s).
 
