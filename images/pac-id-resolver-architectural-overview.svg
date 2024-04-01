@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="216.42958mm"
+   height="65.619041mm"
+   viewBox="0 0 216.42958 65.619041"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1"
+     transform="translate(-26.034166,-89.460297)">
+    <rect
+       x="26.034166"
+       y="106.65816"
+       width="26.722916"
+       height="22.489584"
+       fill="#70ad47"
+       id="rect9"
+       style="stroke-width:0.264583" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.49792px"
+       id="text11"
+       x="33.90239"
+       y="113.64542"
+       style="stroke-width:0.264583">LIMS</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.49792px"
+       id="text13"
+       x="28.333153"
+       y="119.78584"
+       style="stroke-width:0.264583"><tspan
+         id="tspan8250"
+         x="28.333153"
+         y="119.78584">“End User</tspan><tspan
+         id="tspan8252"
+         x="28.333153"
+         y="125.40824">Application”</tspan></text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text15"
+       x="77.982193"
+       y="110.89149"
+       style="stroke-width:0.264583">PAC</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text17"
+       x="84.561584"
+       y="110.89149"
+       style="stroke-width:0.264583">-</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text19"
+       x="85.840317"
+       y="110.89149"
+       style="stroke-width:0.264583">ID</text>
+    <path
+       d="m 52.757083,113.00816 h 59.400277 v 1.05833 H 52.757083 Z m 58.871117,-1.05833 3.175,1.5875 -3.175,1.5875 z"
+       fill="#4472c4"
+       id="path21"
+       style="stroke-width:0.264583" />
+    <path
+       d="m 114.8032,122.00399 -59.400281,3e-5 v 1.05833 l 59.400281,-2e-5 z m -58.871114,-1.0583 -3.175,1.5875 3.175,1.5875 z"
+       fill="#4472c4"
+       id="path1087"
+       style="stroke-width:0.264583" />
+    <rect
+       x="114.66958"
+       y="106.65816"
+       width="26.722916"
+       height="22.754166"
+       fill="#5b9bd5"
+       id="rect1089"
+       style="stroke-width:0.264583" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.49792px"
+       id="text1091"
+       x="121.89535"
+       y="116.97691"
+       style="stroke-width:0.264583">PAC</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.49792px"
+       id="text1093"
+       x="128.93512"
+       y="116.97691"
+       style="stroke-width:0.264583">-</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.49792px"
+       id="text1095"
+       x="130.30196"
+       y="116.97691"
+       style="stroke-width:0.264583">ID</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1097"
+       x="120.73119"
+       y="122.26858"
+       style="stroke-width:0.264583">Resolver</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1099"
+       x="85.088036"
+       y="126.80252"
+       style="stroke-width:0.264583"><tspan
+         id="tspan12028"
+         x="85.088036"
+         y="126.80252"
+         style="text-align:center;text-anchor:middle">Service Names, User Intents,</tspan><tspan
+         id="tspan12030"
+         x="85.088036"
+         y="132.09418"
+         style="text-align:center;text-anchor:middle">Service Types and resolved URLs</tspan></text>
+    <rect
+       x="203.43729"
+       y="106.52587"
+       width="23.547916"
+       height="20.637499"
+       fill="#4472c4"
+       id="rect1103"
+       style="stroke-width:0.264583" />
+    <path
+       d="m 206.38078,106.52587 v 20.6375 m -2.94349,-18.05781 h 23.54792"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path1105" />
+    <rect
+       x="203.43729"
+       y="106.52587"
+       width="23.547916"
+       height="20.637499"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect1107" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1109"
+       x="208.95491"
+       y="116.97691"
+       style="stroke-width:0.264583">Mapping</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1111"
+       x="212.03096"
+       y="122.00399"
+       style="stroke-width:0.264583">Table</text>
+    <rect
+       x="207.67062"
+       y="110.7592"
+       width="23.547916"
+       height="20.637499"
+       fill="#4472c4"
+       id="rect1113"
+       style="stroke-width:0.264583" />
+    <path
+       d="m 210.61411,110.7592 v 20.6375 m -2.94349,-18.05781 h 23.54792"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path1115" />
+    <rect
+       x="207.67062"
+       y="110.7592"
+       width="23.547916"
+       height="20.637499"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect1117" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1119"
+       x="213.18823"
+       y="121.21024"
+       style="stroke-width:0.264583">Mapping</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1121"
+       x="216.2643"
+       y="126.23733"
+       style="stroke-width:0.264583">Table</text>
+    <rect
+       x="211.90396"
+       y="114.99254"
+       width="23.547916"
+       height="20.637499"
+       fill="#4472c4"
+       id="rect1123"
+       style="stroke-width:0.264583" />
+    <path
+       d="m 214.84745,114.99253 v 20.6375 m -2.94349,-18.05781 h 23.54791"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       fill-rule="evenodd"
+       id="path1125" />
+    <rect
+       x="211.90396"
+       y="114.99254"
+       width="23.547916"
+       height="20.637499"
+       stroke="#2f528f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="none"
+       id="rect1127" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1129"
+       x="217.42159"
+       y="125.44358"
+       style="stroke-width:0.264583">Mapping</text>
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1131"
+       x="218.38097"
+       y="130.47066"
+       style="stroke-width:0.264583">Table(s)</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1133"
+       x="150.5103"
+       y="111.42066"
+       style="stroke-width:0.264583">Look</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1135"
+       x="158.71239"
+       y="111.42066"
+       style="stroke-width:0.264583">-</text>
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1137"
+       x="159.99112"
+       y="111.42066"
+       style="stroke-width:0.264583">up mapping table(s)</text>
+    <path
+       d="m 141.3925,113.80191 h 59.40028 v 1.05833 H 141.3925 Z m 58.87111,-1.05833 3.175,1.5875 -3.175,1.5875 z"
+       fill="#4472c4"
+       id="path1139"
+       style="stroke-width:0.264583" />
+    <path
+       d="m 203.43861,121.47482 -59.40028,3e-5 v 1.05833 l 59.40028,-2e-5 z m -58.87111,-1.0583 -3.175,1.5875 3.175,1.5875 z"
+       fill="#4472c4"
+       id="path1141"
+       style="stroke-width:0.264583" />
+    <text
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="4.23333px"
+       id="text1143"
+       x="157.86916"
+       y="127.29566"
+       style="stroke-width:0.264583">Matching ent§ries</text>
+    <path
+       d="m 62.414374,106.65816 c 0,-2.5572 2.073011,-4.63021 4.630208,-4.63021 2.557198,0 4.630209,2.07301 4.630209,4.63021 0,2.5572 -2.073011,4.63021 -4.630209,4.63021 -2.557197,0 -4.630208,-2.07301 -4.630208,-4.63021 z"
+       stroke="#64310f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="#ed7d31"
+       fill-rule="evenodd"
+       id="path1145" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1147"
+       x="65.298065"
+       y="108.51024"
+       style="stroke-width:0.264583">1</text>
+    <path
+       d="m 167.71854,101.63108 c 0,-2.557201 2.07301,-4.630211 4.63021,-4.630211 2.5572,0 4.63021,2.07301 4.63021,4.630211 0,2.55719 -2.07301,4.63021 -4.63021,4.63021 -2.5572,0 -4.63021,-2.07302 -4.63021,-4.63021 z"
+       stroke="#64310f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="#ed7d31"
+       fill-rule="evenodd"
+       id="path1149" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1151"
+       x="170.58266"
+       y="103.48316"
+       style="stroke-width:0.264583">2</text>
+    <path
+       d="m 123.53312,135.76233 c 0,-2.5572 2.07301,-4.63021 4.63021,-4.63021 2.5572,0 4.63021,2.07301 4.63021,4.63021 0,2.55719 -2.07301,4.6302 -4.63021,4.6302 -2.5572,0 -4.63021,-2.07301 -4.63021,-4.6302 z"
+       stroke="#64310f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="#ed7d31"
+       fill-rule="evenodd"
+       id="path1153" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1155"
+       x="126.45068"
+       y="137.61441"
+       style="stroke-width:0.264583">3</text>
+    <path
+       d="m 76.966457,139.46649 c 0,-2.55719 2.073011,-4.63021 4.630209,-4.63021 2.557197,0 4.630208,2.07302 4.630208,4.63021 0,2.5572 -2.073011,4.63021 -4.630208,4.63021 -2.557198,0 -4.630209,-2.07301 -4.630209,-4.63021 z"
+       stroke="#64310f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="#ed7d31"
+       fill-rule="evenodd"
+       id="path1157" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1159"
+       x="79.909683"
+       y="141.31857"
+       style="stroke-width:0.264583">4</text>
+    <path
+       d="m 35.691458,136.02691 c 0,-2.5572 2.07301,-4.63021 4.630208,-4.63021 2.557198,0 4.630208,2.07301 4.630208,4.63021 0,2.5572 -2.07301,4.63021 -4.630208,4.63021 -2.557198,0 -4.630208,-2.07301 -4.630208,-4.63021 z"
+       stroke="#64310f"
+       stroke-width="0.352777"
+       stroke-miterlimit="8"
+       fill="#ed7d31"
+       fill-rule="evenodd"
+       id="path1161" />
+    <text
+       fill="#ffffff"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1163"
+       x="38.582825"
+       y="137.87898"
+       style="stroke-width:0.264583">5</text>
+    <path
+       d="m 56.488802,130.94612 c -0.418261,-4.20529 -1.703166,-10.67515 8.246313,-12.88071 9.94948,-2.20557 43.681955,2.3233 51.450295,-0.35296 7.76834,-2.67599 -8.03732,-11.23368 -4.84025,-15.70381 3.19707,-4.470138 6.27444,-9.734024 24.02211,-11.116207 17.74768,-1.382183 64.65656,-2.970212 82.46395,2.823104 17.80739,5.793317 25.57573,22.026563 24.38066,31.937063 -1.19507,9.9105 -3.07737,23.61485 -31.55133,27.52592 -28.47397,3.91134 -110.19096,0.52944 -131.583821,-2.47015 -21.39286,-2.99958 -22.169667,-15.55697 -22.587927,-19.76225 z"
+       stroke="#ed7d31"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       fill="none"
+       fill-rule="evenodd"
+       id="path1165"
+       style="stroke-width:0.266771" />
+    <text
+       fill="#ed7d31"
+       font-family="Calibri, Calibri_MSFontService, sans-serif"
+       font-weight="400"
+       font-size="6.35px"
+       id="text1167"
+       x="117.20323"
+       y="151.63733"
+       style="stroke-width:0.264583">Scope of this specification</text>
+    <g
+       style="clip-rule:evenodd;fill-rule:evenodd"
+       id="g16229"
+       transform="matrix(0.75012994,0,0,0.75012994,73.148217,90.046121)">
+      <path
+         d="m 3,3.375 h 5.25 m 1.5,0 h 3 m 0.75,0 h 2.25 m 0.75,0 h 5.25 M 3,4.125 h 0.75 m 3.75,0 h 0.75 m 8.25,0 h 0.75 m 3.75,0 h 0.75 M 3,4.875 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 1.5,0 h 0.75 m 1.5,0 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 M 3,5.625 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 3.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 M 3,6.375 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 2.25,0 h 1.5 m 3,0 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 M 3,7.125 h 0.75 m 3.75,0 h 0.75 m 1.5,0 h 1.5 m 1.5,0 h 0.75 m 0.75,0 h 1.5 m 0.75,0 h 0.75 m 3.75,0 h 0.75 M 3,7.875 h 5.25 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 5.25 m -12,0.75 h 0.75 m 1.5,0 h 1.5 M 3,9.375 h 1.5 m 2.25,0 H 9 m 0.75,0 h 1.5 m 1.5,0 h 3 m 2.25,0 h 1.5 M 3,10.125 h 0.75 m 1.5,0 H 7.5 m 0.75,0 h 1.5 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 2.25,0 h 1.5 m 2.25,0 h 1.5 m -15,0.75 H 6 m 1.5,0 h 0.75 m 1.5,0 h 0.75 m 1.5,0 h 2.25 m 0.75,0 h 0.75 m 0.75,0 h 2.25 m 1.5,0 h 1.5 m -18,0.75 H 7.5 m 3,0 h 0.75 m 0.75,0 h 0.75 m 2.25,0 h 0.75 m 1.5,0 H 19.5 M 3,12.375 h 0.75 m 3,0 h 1.5 m 1.5,0 h 6.75 m 0.75,0 H 21 m -18,0.75 h 1.5 m 0.75,0 H 6 m 0.75,0 H 7.5 m 0.75,0 h 1.5 m 0.75,0 h 0.75 m 2.25,0 h 0.75 m 0.75,0 h 4.5 M 3,13.875 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 H 9 m 2.25,0 h 1.5 m 0.75,0 h 2.25 m 3,0 h 1.5 M 3,14.625 h 0.75 m 0.75,0 h 0.75 m 3.75,0 h 1.5 m 0.75,0 H 12 m 3,0 h 1.5 m 3,0 h 2.25 M 3,15.375 h 0.75 m 3,0 H 9 m 0.75,0 h 1.5 m 3,0 h 4.5 m 0.75,0 h 0.75 m 0.75,0 h 0.75 M 9,16.125 h 1.5 m 1.5,0 h 0.75 m 0.75,0 h 2.25 m 2.25,0 h 3 m -18,0.75 h 5.25 m 0.75,0 h 4.5 m 0.75,0 h 1.5 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 0.75,0 h 2.25 M 3,17.625 h 0.75 m 3.75,0 h 0.75 m 0.75,0 h 0.75 m 1.5,0 h 1.5 m 0.75,0 h 0.75 m 0.75,0 h 0.75 m 2.25,0 h 3.75 M 3,18.375 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 2.25,0 h 0.75 m 1.5,0 h 1.5 m 0.75,0 h 3.75 m 1.5,0 h 1.5 M 3,19.125 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 3,0 h 2.25 m 2.25,0 h 1.5 m 0.75,0 h 3.75 M 3,19.875 h 0.75 m 0.75,0 h 2.25 m 0.75,0 h 0.75 m 2.25,0 h 2.25 m 3.75,0 H 18 m 0.75,0 h 0.75 m 1.5,0 h 0.75 M 3,20.625 h 0.75 m 3.75,0 h 0.75 m 0.75,0 h 0.75 m 2.25,0 h 0.75 m 0.75,0 h 6 M 3,21.375 h 5.25 m 0.75,0 h 3 m 0.75,0 h 3 m 0.75,0 h 0.75 m 1.5,0 h 0.75 m 0.75,0 h 1.5"
+         style="fill-rule:nonzero;stroke:#000000;stroke-width:0.75px"
+         id="path16184" />
+      <rect
+         x="24.75"
+         y="8.25"
+         width="0.75"
+         height="3"
+         id="rect16186" />
+      <rect
+         x="27.75"
+         y="8.25"
+         width="0.75"
+         height="3"
+         id="rect16188" />
+      <rect
+         x="25.5"
+         y="7.5"
+         width="2.25"
+         height="0.75"
+         id="rect16190" />
+      <rect
+         x="24.75"
+         y="9"
+         width="3.75"
+         height="0.75"
+         id="rect16192" />
+      <rect
+         x="25.5"
+         y="12"
+         width="3"
+         height="0.75"
+         id="rect16194" />
+      <rect
+         x="25.5"
+         y="15"
+         width="3"
+         height="0.75"
+         id="rect16196" />
+      <rect
+         x="24.75"
+         y="12.75"
+         width="0.75"
+         height="2.25"
+         id="rect16198" />
+      <rect
+         x="24.75"
+         y="3"
+         width="0.75"
+         height="3.75"
+         id="rect16200" />
+      <rect
+         x="24.75"
+         y="4.5"
+         width="3"
+         height="0.75"
+         id="rect16202" />
+      <rect
+         x="27.75"
+         y="3.75"
+         width="0.75"
+         height="0.75"
+         id="rect16204" />
+      <rect
+         x="24.75"
+         y="3"
+         width="3"
+         height="0.75"
+         id="rect16206" />
+      <rect
+         x="26.25"
+         y="18"
+         width="0.75"
+         height="0.75"
+         id="rect16208" />
+    </g>
+  </g>
+</svg>
