@@ -2,18 +2,25 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="216.42958mm"
-   height="65.619041mm"
-   viewBox="0 0 216.42958 65.619041"
+   width="226.43069mm"
+   height="75.62117mm"
+   viewBox="0 0 226.43069 75.62117"
    version="1.1"
    id="svg5"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs2" />
+  <rect
+     style="fill:#ffffff;stroke-width:0.263107"
+     id="rect94"
+     width="226.431"
+     height="75.62117"
+     x="0"
+     y="0" />
   <g
      id="layer1"
-     transform="translate(-26.034166,-89.460297)">
+     transform="translate(-21.034166,-84.459203)">
     <rect
        x="26.034166"
        y="106.65816"
