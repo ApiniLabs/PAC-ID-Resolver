@@ -1,9 +1,11 @@
 # PAC-ID Resolver
 
-## What Is a `PAC-ID Resolver`?
+## `PAC-ID Resolver` in a Nutshell
 
-> [!TIP]
-> A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a program, service or library designed to convert a given `PAC-ID` into a URL. This URL can then be utilized to access additional information associated with the corresponding `PAC-ID`.
+[!TIP]
+A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a program, service or library designed to convert a given `PAC-ID` into a URL, based on contextual information.
+
+This URL can then be utilized to access additional information associated with the corresponding `PAC-ID`.
 
 ## Introduction
 
