@@ -2,9 +2,9 @@
 
 ## `PAC-ID Resolver` in a Nutshell
 
-A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is an architectural pattern for loosely coupling applications, creating modern user experience without classical integration. The basis for the coupling is a `PAC-ID`. 
+A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is an architectural pattern for loosely coupling applications, creating modern user experience without classical integration. The basis for the coupling is a `PAC-ID`.
 
-Working principle: The application asks the `PAC-ID Resolver` to convert a given `PAC-ID` into an ordered list of coupling information, based on configurable coupling information tables provided to the `PAC-ID Resolver`. The application in turn selects the best coupling information from the list, based on an application intent. The coupling information contains a URL, which can be used by the application to either handover the user to another application or to find relevant end-points for inter application communication.
+Working principle: The application asks the `PAC-ID Resolver` to convert a given `PAC-ID` into an ordered list of coupling information, based on configurable coupling information tables provided to the `PAC-ID Resolver`. The application in turn selects the best coupling information from the list, based on an application intent. The coupling information, depending on the indicated service type, contains a URL for user handovers or an endpoint for standardized inter-application communication.
 
 ## Introduction
 
@@ -12,7 +12,7 @@ In laboratory workflows, the utilization of multiple software applications is co
 
 The conventional approach involves interfacing applications with each other. Unfortunately, due to the lack of standards, such interfaces typically require bespoke software development or customization projects, demanding substantial effort to create and maintain.
 
-The PAC-ID Resolver architecture offers an alternative and lightweight solution for connecting applications in a loosely coupled manner, depending on the current workflow context. This architecture provides an exceptional user experience by facilitating seamless interactions between applications.
+In contrast, the PAC-ID Resolver architecture offers an alternative and lightweight solution for connecting applications in a loosely coupled manner. Implemented as a neutral contract between systems, it eliminates inter-dependencies and therefore facilitates adding additional or replacing existing systems. Its workflow context awareness allows seamless interactions that result in an exceptional user experience.
 
 ## Interaction of an Application with a `PAC-ID Resolver`
 
@@ -26,9 +26,9 @@ The PAC-ID Resolver architecture offers an alternative and lightweight solution 
 
 ### Format of a Coupling Information Table
 
-The coupling information table SHALL be a text string, containing zero or more coupling information entries (rows), separated by “`newline`" and formatted with “`tab`" delimited columns as follows. When serializing into a file or into a binary stream or array, the contents SHALL be encoded using UTF-8 encoding. 
+The coupling information table SHALL be a text string, containing zero or more coupling information entries (rows), separated by “`newline`" and formatted with “`tab`" delimited columns as follows. When serializing into a file or into a binary stream or array, the contents SHALL be encoded using UTF-8 encoding.
 
-Lines starting with the “`#`" character SHALL be ignored and treated as comments until the next “`newline`". 
+Lines starting with the “`#`" character SHALL be ignored and treated as comments until the next “`newline`".
 
 It is RECOMMENDED that the first line contains a version preamble in the format `# coupling information table version: 1.0`, indicating the version of the coupling information table. Currently the version is fixed to `1.0`.
 
@@ -56,11 +56,12 @@ Attributes          ⇨ ChemProps          ⇨ attributes-generic   ⇨ {isu}=ME
 ### Sources and Precedence of a Coupling Information Table
 
 A `PAC-ID Resolver` SHALL be able to retrieve coupling information tables from multiple sources:
+
 - loading from a file system
 - retrieving from a http(s) URL
 - retrieving the **Global Coupling Information Table** from “`https://pac.{issuer}/coupling-information-table`”. Where “`issuer`“ MUST be replaced by the appropriate value from the `PAC-ID`.
 
-The sources and their precedence SHALL be configurable. 
+The sources and their precedence SHALL be configurable.
 
 ### Matching a `PAC-ID` to Entries in a Coupling Information Table
 
@@ -119,6 +120,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 See [here](faq.md).
 
 ## License
+
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a
