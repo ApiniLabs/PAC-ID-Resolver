@@ -77,7 +77,7 @@ Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having 
 
 ### Substituting Variables in a Coupling Information Table
 
-For **Template Url** and **Applicable If** colums, the `variable`s outlined below MAY be used.
+For **Template Url** and **Applicable If** columns, the `variable`s outlined below MAY be used.
 
 The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example for the **Example** column below:
 ```
