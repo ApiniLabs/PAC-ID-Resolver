@@ -2,10 +2,9 @@
 
 ## `PAC-ID Resolver` in a Nutshell
 
-[!TIP]
-A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a program, service or library designed to convert a given `PAC-ID` into a URL, based on contextual information.
+A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is a program, service or library designed to convert a given [`PAC-ID`](https://github.com/ApiniLabs/PAC-ID) into a URL, based on contextual information.
 
-This URL can then be utilized to access additional information associated with the corresponding `PAC-ID`.
+This URL can then be utilized to access additional information associated with the corresponding [`PAC-ID`](https://github.com/ApiniLabs/PAC-ID).
 
 ## Introduction
 
@@ -104,40 +103,38 @@ The first non-comment row MUST contain a header, composed of the column names fr
 | 4 | **Applicable If** | A list of `rule`s a `PAC-ID` SHOULD fulfil in order to be relevant for the service.<br>CAN be empty.<br>Multiple `rule`s MUST be separated by `;`. All `rule`s MUST match if multiple `rule`s are specified (AND logic - for OR logic simply create additional rows.)<br>Matching SHALL be case-insensitive. |
 | 5 | **Template Url** | A URL that points to the service outlined in this entry.<br>MAY contain one or more instances of a `variable`. The **Template Url** is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*".<br>When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
 
-> [!NOTE]
-> Example of a mapping table:
-> ```
-> # mapping table version: 1.0
-> # This is a comment
-> Service Name        ⇨ User Intent ⇨ Service Type         ⇨ Applicable if                       ⇨ Template Url
-> Product Information ⇨ ProdInfo    ⇨ userhandover-generic ⇨ {isu}=METTORIUS.COM;{idSeg1}=DEVICE ⇨ https://www.mettorius.com/inventory/{idSeg1}/{idVal21}
-> Attributes          ⇨ Attributes  ⇨ attributes-generic   ⇨ {isu}=METTORIUS.COM                 ⇨ https://attributes.mettorius.com/{id}
-> # ... more entries ...`
-> ```
-> `⇨` denotes a tab character.
-> 
-> Given the following `PAC-ID`:
-> ```
-> HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263
-> ```
-> the first row of the mapping table would resolve to the following URL:
-> ```
-> https://www.mettorius.com/inventory/DEVICE/210263
-> ```
-> the second would resolve to this URL:
-> ```
-> https://attributes.mettorius.com/DEVICE/21:210263
-> ```
+Example of a mapping table:
+```
+# mapping table version: 1.0
+# This is a comment
+Service Name        ⇨ User Intent ⇨ Service Type         ⇨ Applicable if                       ⇨ Template Url
+Product Information ⇨ ProdInfo    ⇨ userhandover-generic ⇨ {isu}=METTORIUS.COM;{idSeg1}=DEVICE ⇨ https://www.mettorius.com/inventory/{idSeg1}/{idVal21}
+Attributes          ⇨ Attributes  ⇨ attributes-generic   ⇨ {isu}=METTORIUS.COM                 ⇨ https://attributes.mettorius.com/{id}
+# ... more entries ...
+```
+`⇨` denotes a tab character.
+
+Given the following `PAC-ID`:
+```
+HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263
+```
+the first row of the mapping table would resolve to the following URL:
+```
+https://www.mettorius.com/inventory/DEVICE/210263
+```
+the second would resolve to this URL:
+```
+https://attributes.mettorius.com/DEVICE/21:210263
+```
 
 #### Variables
 
 For **Template Url** and **Applicable If** colums, the `variable`s outlined below MAY be used.
 
-> [!NOTE]
-> The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example for the **Example** column below:
-> ```
-> HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211
-> ```
+The following `PAC-ID` (with two [T-REX](https://github.com/ApiniLabs/T-REX) extensions) is used as example for the **Example** column below:
+```
+HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:20231211
+```
 
 | **Variable** | **Description** | **Example** |
 | :--- | :--- | :--- |
@@ -155,13 +152,12 @@ For **Template Url** and **Applicable If** colums, the `variable`s outlined belo
 
 #### Rules
 
-In the context of this specification, a `rule` consists of a `variable` followed by an `=` sign and a `value`, serving for comparison against a specific value the `variable` refers to inside the `PAC-ID`. Alternatively, if a value for the `variable` merely needs to exist without specifying an exact value, the `variable` can stand alone without an assigned value.
+In the context of this specification, a `rule` consists of a `variable` followed by an `=` sign and a `value`, serving for comparison against a specific value the `variable` refers to inside the `PAC-ID`. Alternatively, if a `variable` merely needs to exist without specifying an exact value, the `variable` can stand alone without an assigned value.
 
-> [!NOTE]
-> Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having any non-empty `id segment value` available for the `id segment key` "21":
-> ```
-> {isu}=METTROIUS.COM;{idVal21}
-> ```
+Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having and for which the `id segment key` "21" exists:
+```
+{isu}=METTROIUS.COM;{idVal21}
+```
 
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
