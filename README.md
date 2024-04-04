@@ -4,7 +4,7 @@
 
 A `PAC-ID Resolver`, short for **P**ublicly **A**ddressable **C**ontent **ID**entifier **Resolver**, is an architectural pattern for loosely coupling applications, creating modern user experience without classical integration. The basis for the coupling is a `PAC-ID`. 
 
-Working principle: The application asks the `PAC-ID Resolver` to convert a given `PAC-ID` into an ordered list of coupling information, based on configurable coupling information tables provided to the `PAC-ID Resolver`. The application in turn selects the best coupling infromation from the list, based on an application intent. The coupling information contains a URL, which can be used by the application to either handover the user to another application or to find relevant end-points for inter application communcation.
+Working principle: The application asks the `PAC-ID Resolver` to convert a given `PAC-ID` into an ordered list of coupling information, based on configurable coupling information tables provided to the `PAC-ID Resolver`. The application in turn selects the best coupling information from the list, based on an application intent. The coupling information contains a URL, which can be used by the application to either handover the user to another application or to find relevant end-points for inter application communication.
 
 ## Introduction
 
@@ -58,7 +58,7 @@ Attributes          ⇨ ChemProps          ⇨ attributes-generic   ⇨ {isu}=ME
 A `PAC-ID Resolver` SHALL be able to retrieve coupling information tables from multiple sources:
 - loading from a file system
 - retrieving from a http(s) URL
-- retrieveing the **Global Coupling Information Table** from “`https://pac.{issuer}/coupling-information-table`”. Where “`issuer`“ MUST be replaced by the appropriate value from the `PAC-ID`.
+- retrieving the **Global Coupling Information Table** from “`https://pac.{issuer}/coupling-information-table`”. Where “`issuer`“ MUST be replaced by the appropriate value from the `PAC-ID`.
 
 The sources and their precedence SHALL be configurable. 
 
