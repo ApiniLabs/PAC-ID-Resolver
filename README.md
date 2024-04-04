@@ -162,6 +162,10 @@ Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having 
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
 
+## FAQ
+
+See [here](faq.md).
+
 ## License
 Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
