@@ -26,7 +26,7 @@ The PAC-ID Resolver architecture offers an alternative and lightweight solution 
 
 ### Format of a Coupling Information Table
 
-The coupling information table SHALL be a text string, containing zero or more couplin information entries (rows), separated by “`newline`" and formatted with “`tab`" delimited columns as follows. When serializing into a file or into a binary stream or array, the contents SHALL be encoded using UTF-8 encoding. 
+The coupling information table SHALL be a text string, containing zero or more coupling information entries (rows), separated by “`newline`" and formatted with “`tab`" delimited columns as follows. When serializing into a file or into a binary stream or array, the contents SHALL be encoded using UTF-8 encoding. 
 
 Lines starting with the “`#`" character SHALL be ignored and treated as comments until the next “`newline`". 
 
@@ -36,11 +36,11 @@ The first non-comment row MUST contain a header, composed of the column names fr
 
 | **Column #** | **Column Name** | **Description** |
 | :--- | :--- | :--- |
-| 1 | **Service Name** | Describes the entry in human readable, US-English language. SHALL contain only letters `a-zA-Z`, numbers `0-9`, spaces ` ` or hyphens `-`. MUST contain at least one but not more than 255 characters. |
-| 2 | **Application Intent**  | A list of strings separated by `;`. Strings ending with `-generic` SHALL be reserved for future use. Each string MUST match the regular expression `^[A-Za-z0-9-]{0,64}$`. |
-| 3 | **Service Type** | The service type MUST be one of the following strings:<ul><li>`userhandover-generic`: The template URL is a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file).</li><li>`attributes-generic`: The template URL MUST lead to an [Attributes Service](https://github.com/ApiniLabs/Attributes-Service) endpoint.</li></ul> |
-| 4 | **Applicable If** | A list of `rule`s a `PAC-ID` SHOULD fulfil in order to match.<br>CAN be empty.<br>Multiple `rule`s MUST be separated by `;`. All `rule`s MUST match if multiple `rule`s are specified (AND logic - for OR logic simply create additional rows.)<br>Matching SHALL be case-insensitive. |
-| 5 | **Template Url** | A URL that points to the service outlined in this entry.<br>MAY contain one or more instances of a `variable`. The **Template Url** is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*".<br>When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
+| 1 | **Service Name** | Describes the entry in human readable, US-English language. The service name SHALL contain only letters `a-zA-Z`, numbers `0-9`, spaces ` ` or hyphens `-`. It MUST contain at least one but not more than 255 characters. |
+| 2 | **Application Intent**  | A list of strings separated by `;`. Strings ending with `-generic` SHALL be reserved for future use. Each string SHALL contain only letters `a-zA-Z`, numbers `0-9` or hyphens `-`, but no spaces. Each string MUST contain at least one but not more than 64 characters. |
+| 3 | **Service Type** | The service type MUST be one of the following strings:<ul><li>`userhandover-generic`: The template URL is a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file).</li><li>`attributes-generic`: The template URL MUST lead to an `Attributes Service` endpoint.</li></ul> |
+| 4 | **Applicable If** | A list of `rule`s a `PAC-ID` SHOULD fulfil in order to match the entry. The list MAY be empty.<br>Multiple `rule`s MUST be separated by `;`. |
+| 5 | **Template Url** | A template URL which MAY contain one or more instances of a `variable`. The Template Url is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*". When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
 
 Example of a coupling information table:
 ```
@@ -66,24 +66,13 @@ The sources and their precedence SHALL be configurable.
 
 The `PAC-ID Resolver` SHALL match coupling information entries by evaluating the `rule`s in the **Applicable If** column of all found coupling information tables.
 
-In the context of this specification, a `rule` consists of a `variable` followed by an `=` sign and a `value`, serving for comparison against a specific value the `variable` refers to inside the `PAC-ID`. Alternatively, if a `variable` merely needs to exist without specifying an exact value, the `variable` can stand alone without an assigned value.
+In the context of this specification, a `rule` consists of a `variable` followed by an `=` sign and a `value`. Alternatively, if a `variable` merely needs to exist in the `PAC-ID`, without specifying an exact value, the `variable` can stand alone without an assigned value.
+
+All `rule`s MUST match, if multiple `rule`s are specified (AND logic - for OR logic simply create additional rows). Matching SHALL be case-insensitive.
 
 Example of a `rule` matching `PAC-ID`s with `issuer` "METTORIUS.COM" and having and for which the `id segment key` "21" exists:
 ```
 {isu}=METTROIUS.COM;{idVal21}
-```
-
-Given the following `PAC-ID`:
-```
-HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263
-```
-the first row of the coupling information table example above would resolve to the following URL:
-```
-https://www.mettorius.com/inventory/DEVICE/210263
-```
-the second would resolve to this URL:
-```
-https://attributes.mettorius.com/DEVICE/21:210263
 ```
 
 ### Substituting Variables in a Coupling Information Table
@@ -108,6 +97,19 @@ HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263*11$T.D:20231121+FOO$T.A:BAR*CAL$T.D:2
 | {extNValFOO} | The value of the extension segment with key "FOO"[^1]  of the Nth extension. Key and value inside a segment are separated by the `:` character. | {ext1Val11$T.D} → 20231121 |
 
 [^1]: Any occurrence of curly brackets (`{` and `}`) inside "FOO" need to be escaped with a backslash `\` (resulting in `\{` and `\}`).
+
+Given the following `PAC-ID`:
+```
+HTTPS://PAC.METTORIUS.COM/DEVICE/21:210263
+```
+the first row of the coupling information table example above would resolve to the following URL:
+```
+https://www.mettorius.com/inventory/DEVICE/210263
+```
+the second would resolve to this URL:
+```
+https://attributes.mettorius.com/DEVICE/21:210263
+```
 
 ## Terminology Used
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) "Key words for use in RFCs to Indicate Requirement Levels".
