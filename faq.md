@@ -24,7 +24,7 @@ As an *issuer* of `PAC-ID`s, however, you are strongly recommended to host your 
 
 **Q: Can resolver rules use `PAC-CAT` categories, or only raw identifier segments?**
 
-**A:** Both. Rules are evaluated against the full JSON serialization of the `PAC-ID`, which includes `PAC-CAT`-derived `categories` (and their `segments`) alongside the raw `identifier` array — see [Querying the PAC-ID with JSONPath](README.md#querying-the-pac-id-with-jsonpath).
+**A:** Both. Rules are evaluated against the full Resolver Context, which includes `PAC-CAT`-derived `categories` (and their `segments`) alongside the raw `identifier` array — see [Querying the Resolver Context with JSONPath](README.md#querying-the-resolver-context-with-jsonpath).
 
 **Q: When should I use `attributes-generic` versus a `userhandover-generic`/`action-generic` entry, and how complex should `template_url` templating get?**
 
