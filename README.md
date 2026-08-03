@@ -70,6 +70,7 @@ config:
 **application_intents**  | A list of strings identifying the use case(s) the entry fulfills (see [Application Intent](#application-intent)). Strings ending with `-generic` SHALL be reserved for future use. Each string SHALL contain only letters `a-zA-Z`, numbers `0-9` or hyphens `-`, but no spaces. Each string MUST contain at least one but not more than 64 characters. |
 **service_type** | The service type MUST be one of the following strings:<ul><li>`userhandover-generic`: The template URL is a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file).</li><li>`attributes-generic`: The template URL MUST lead to an `Attributes Service` endpoint.</li><li>`action-generic`: The template URL, when requested, triggers an action (e.g. a backend operation) rather than returning content for display or an attributes payload.</li></ul> |
 **template_url** | A template URL which MAY contain one or more instances of a `variable`. The Template Url is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*". When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
+**semantic_key** | OPTIONAL. An absolute IRI identifying what the entry semantically *is*, drawn from a shared vocabulary (see [Key](#key)). |
 
 
 
@@ -78,6 +79,23 @@ config:
 `application_intents` lets the creator of a resolver configuration tailor entries to specific use cases. An application resolving a `PAC-ID` looks for the entries whose `application_intents` include the intent(s) it cares about, and prioritizes those matches over entries that don't declare a matching intent. This means the same `PAC-ID` can resolve to different links depending on which application — or which specific action within that application — is doing the resolving: for example, an inventory application might look for the intent `reorder`, while a lab notebook might look for `chem-info`, even though both resolve the same `PAC-ID` against the same resolver configuration.
 
 <span style="color:red">Open question for the team: MAY `application_intents` be empty or absent, i.e. an entry declares no intent at all? If so, how should such an entry be treated when an application filters by a specific intent — always match, as a fallback/default entry, or never match?</span>
+
+### Key
+
+`key` identifies *what the entry actually is*. Its source SHALL follow the same convention as `PAC-ID Attributes` already established (see [`well_known_keys.md`](https://github.com/ApiniLabs/PAC-Attributes/blob/main/well_known_keys.md)): reuse a term from an existing, already-authoritative external vocabulary appropriate to the concept (e.g. [schema.org](https://schema.org), [Wikidata](https://www.wikidata.org), a [GS1 Application Identifier](https://ref.gs1.org/ai/), [QUDT](https://qudt.org/vocab/quantitykind/)) rather than minting a new LabFREED-specific namespace. 
+
+Example — `https://www.wikidata.org/wiki/Q222067` is `PAC-ID Attributes`' own recommended key for "Safety Data Sheet" (see `well_known_keys.md`'s "Documents" section), reused here unchanged as the `key`:
+
+```yaml
+- if: True
+  entries:
+  - service_type: userhandover-generic
+    service_name: MSDS
+    application_intents:
+      - document-msds
+    key: https://www.wikidata.org/wiki/Q222067
+    template_url: https://www.mettorius.com/msds/{$.categories[0].segments[?(@.key == '240')].value}
+```
 
 ### Sources and Precedence of a Resolver Configuration
 
