@@ -70,7 +70,7 @@ config:
 **application_intents**  | A list of strings identifying the use case(s) the entry fulfills (see [Application Intent](#application-intent)). Strings ending with `-generic` SHALL be reserved for future use. Each string SHALL contain only letters `a-zA-Z`, numbers `0-9` or hyphens `-`, but no spaces. Each string MUST contain at least one but not more than 64 characters. |
 **service_type** | The service type MUST be one of the following strings:<ul><li>`userhandover-generic`: The template URL is a navigable URL leading to content made for human consumption (e.g. a HTML page, a PDF file).</li><li>`attributes-generic`: The template URL MUST lead to an `Attributes Service` endpoint.</li><li>`action-generic`: The template URL, when requested, triggers an action (e.g. a backend operation) rather than returning content for display or an attributes payload.</li></ul> |
 **template_url** | A template URL which MAY contain one or more instances of a `variable`. The Template Url is inspired by [RFC 6570 URI Template](https://datatracker.ietf.org/doc/html/rfc6570): A `variable` corresponds to an RFC6570 "*expression*"; the `PAC-ID Resolver` to a RFC 6570 "*template processor*". When replacing the `variable`s with the appropriate values from a `PAC-ID`, the result MUST become a valid URL. |
-**semantic_key** | OPTIONAL. An absolute IRI identifying what the entry semantically *is*, drawn from a shared vocabulary (see [Key](#key)). |
+**key** | OPTIONAL. An absolute IRI identifying what the entry semantically *is*, drawn from a shared vocabulary (see [Key](#key)). |
 
 
 
