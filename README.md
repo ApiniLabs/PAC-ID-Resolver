@@ -45,21 +45,22 @@ origin: PERSONAL
 
 config:
 # This is a comment
-- if: $.issuer == METTORIUS.COM AND $.categories[?(@.key == '-MD')]
+- if: $.pac.issuer == METTORIUS.COM AND $.pac.categories[?(@.key == '-MD')]
   entries:
   - service_type: userhandover-generic
-    service_name: Product Page
+    service_name: Datasheet
     application_intents:
-      - ProdInfo
-    template_url: https://www.mettorius.com/inventory/{$.categories[0].segments[?(@.key == '240')].value}/{$.categories[0].segments[?(@.key == '21')].value}
+      - document-datasheet
+    key: https://www.wikidata.org/wiki/Q20819677
+    template_url: https://www.mettorius.com/datasheets/{$.pac.categories[0].segments[?(@.key == '240')].value}.pdf
 
-- if: $.issuer == METTORIUS.COM
+- if: $.pac.issuer == METTORIUS.COM
   entries:
   - service_type: attributes-generic
     service_name: Attributes
     application_intents:
       - ChemProps 
-    template_url: https://attributes.mettorius.com/{$.issuer}/{$.categories[0].key}/{$.categories[0].segments[?(@.key == '21')].value}
+    template_url: https://attributes.mettorius.com/{$.pac.issuer}/{$.pac.categories[0].key}/{$.pac.categories[0].segments[?(@.key == '21')].value}
 ```
 
 **Field Name** | **Description** |
@@ -94,7 +95,7 @@ Example — `https://www.wikidata.org/wiki/Q222067` is `PAC-ID Attributes`' own 
     application_intents:
       - document-msds
     key: https://www.wikidata.org/wiki/Q222067
-    template_url: https://www.mettorius.com/msds/{$.categories[0].segments[?(@.key == '240')].value}
+    template_url: https://www.mettorius.com/msds/{$.pac.categories[0].segments[?(@.key == '240')].value}
 ```
 
 ### Sources and Precedence of a Resolver Configuration
@@ -129,15 +130,15 @@ A **predicate** is one of the following:
   Example:
 
   ```text
-  $.categories[?(@.key == '-MD')]
+  $.pac.categories[?(@.key == '-MD')]
   ```
 
 - A **JSONPath expression with a comparison** to a literal value (quoted or unquoted), or to another JSONPath expression — the JSONPath expression MAY appear on either side of the comparison. Comparisons use one of `==`, `!=`, `<`, `<=`, `>`, `>=` and are performed on the string representation of both operands, case-insensitively.  
   Example (both equivalent, regardless of case):
 
   ```text
-  $.issuer == METTORIUS.COM
-  metTORius.com == $.issuer
+  $.pac.issuer == METTORIUS.COM
+  metTORius.com == $.pac.issuer
   ```
 
 - The literal `True` or `False`, case-insensitive, making the rule block unconditionally applicable or unconditionally inapplicable. It MAY be written as a quoted YAML string (e.g. `if: "True"`) or as YAML's native boolean (e.g. `if: True`); either way it MUST be interpreted as the corresponding boolean, not merely a non-empty, always-truthy string.  
@@ -149,18 +150,18 @@ A **predicate** is one of the following:
 
 > **Design Choice:** JSONPath is used because it provides a standardized and expressive way to query nested JSON structures—such as those derived from `PAC-ID` with `PAC-CAT` and extensions. This enables flexible conditions without custom parsing logic.
 >
-> **Design Choice:** Comparisons are case-insensitive because `PAC-ID` components (e.g. the issuer) are RECOMMENDED, but not required, to be written in upper case — matching should not depend on an author or issuer having followed that recommendation. This applies uniformly to every comparison in a rule, including one written *inside* a JSONPath filter (e.g. `$.categories[?(@.key == '-md')]` MUST match a category whose key is `-MD`) — a rule's matching behavior MUST NOT depend on where in the expression a comparison happens to be written.
+> **Design Choice:** Comparisons are case-insensitive because `PAC-ID` components (e.g. the issuer) are RECOMMENDED, but not required, to be written in upper case — matching should not depend on an author or issuer having followed that recommendation. This applies uniformly to every comparison in a rule, including one written *inside* a JSONPath filter (e.g. `$.pac.categories[?(@.key == '-md')]` MUST match a category whose key is `-MD`) — a rule's matching behavior MUST NOT depend on where in the expression a comparison happens to be written.
 
 Example logical expression, which matches any `PAC-ID` issued by `METTORIUS.COM` that contains the `-MD` category.
 ```text
-$.issuer == METTORIUS.COM AND $.categories[?(@.key == '-MD')]
+$.pac.issuer == METTORIUS.COM AND $.pac.categories[?(@.key == '-MD')]
 ```
 
 ---
 
 ### Querying the Resolver Context with JSONPath
 
-Before a rule or template can be evaluated, the `PAC-ID Resolver` MUST construct a **Resolver Context**: a JSON object, in a standardized structure, representing everything a resolver configuration's rules and templates can query against. In this specification, the Resolver Context consists entirely of the `PAC-ID` being resolved — its issuer, identifier, categories, and extensions.
+Before a rule or template can be evaluated, the `PAC-ID Resolver` MUST construct a **Resolver Context**: a JSON object, in a standardized structure, representing everything a resolver configuration's rules and templates can query against.
 
 #### Constructing the Resolver Context
 
@@ -168,15 +169,18 @@ The Resolver Context MUST be built as follows:
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `issuer` | `string` | The domain name of the `PAC-ID` issuer. |
-| `identifier` | `array` of objects | Ordered list of identifier segments, exactly as parsed from the `PAC-ID`. Key omission/implication is a `PAC-CAT` category-level concept (see `categories` below) and does NOT apply at this base level. Each object contains:<br>• `key`: string or `null` if no key was given for that segment.<br>• `value`: string representing the segment value. |
-| `categories` | `array` of objects | Categories derived from the identifier per `PAC-CAT`, in identifier order; `[]` if the identifier has no category segments. Each category object contains:<br>• `key`: the category key (e.g., `-MD`).<br>• `segments`: array of `{key, value, derivation_namespace}` belonging to that category. <br>`PAC-CAT` defines, per category, how a segment's key MAY be omitted from the `PAC-ID` and implied by segment order instead; here, any such implied key MUST be stated explicitly — every entry in `segments` carries its actual well-known key (e.g., `21` for a serial number), whether or not that key was written out in the `PAC-ID` itself. `key` is `null` only for a segment that has no well-known key at all, neither explicit nor implied. <br>`derivation_namespace` MUST be stated whenever it differs from the `PAC-ID`'s own `issuer`, and MUST otherwise be `null` or omitted.|
-| `extensions` | `array` of objects *(optional)* | List of extensions attached to the `PAC-ID`. Each object contains:<br>• `name`: extension name, or `null` if the extension has none.<br>• `type`: extension type, or `null` if the extension has none.<br>• `data`: raw extension payload as a string. |
-| `as_url` | `string` | The `PAC-ID`, re-serialized as a URL string, including any extensions. |
+| `pac` | `object` | Everything derived from the `PAC-ID` being resolved, nested under this single node (see Design Choice below). Contains the fields below. |
+| `pac.issuer` | `string` | The domain name of the `PAC-ID` issuer. |
+| `pac.identifier` | `array` of objects | Ordered list of identifier segments, exactly as parsed from the `PAC-ID`. Key omission/implication is a `PAC-CAT` category-level concept (see `pac.categories` below) and does NOT apply at this base level. Each object contains:<br>• `key`: string or `null` if no key was given for that segment.<br>• `value`: string representing the segment value. |
+| `pac.categories` | `array` of objects | Categories derived from the identifier per `PAC-CAT`, in identifier order; `[]` if the identifier has no category segments. Each category object contains:<br>• `key`: the category key (e.g., `-MD`).<br>• `segments`: array of `{key, value, derivation_namespace}` belonging to that category. <br>`PAC-CAT` defines, per category, how a segment's key MAY be omitted from the `PAC-ID` and implied by segment order instead; here, any such implied key MUST be stated explicitly — every entry in `segments` carries its actual well-known key (e.g., `21` for a serial number), whether or not that key was written out in the `PAC-ID` itself. `key` is `null` only for a segment that has no well-known key at all, neither explicit nor implied. <br>`derivation_namespace` MUST be stated whenever it differs from the `PAC-ID`'s own `issuer`, and MUST otherwise be `null` or omitted.|
+| `pac.extensions` | `array` of objects *(optional)* | List of extensions attached to the `PAC-ID`. Each object contains:<br>• `name`: extension name, or `null` if the extension has none.<br>• `type`: extension type, or `null` if the extension has none.<br>• `data`: raw extension payload as a string. |
+| `pac.as_url` | `string` | The `PAC-ID`, re-serialized as a URL string, including any extensions. |
 
 All string values **MUST** be encoded in UTF-8 and all keys are **case-sensitive**.  
 Unknown or unsupported fields **MUST** be ignored by implementations.
 
+> **Design Choice:** All `PAC-ID`-derived fields are nested under a single `pac` node (`$.pac.issuer`, `$.pac.categories`, ...) rather than living directly at the Resolver Context's top level. This leaves room for future versions of the Resolver Context to add fields unrelated to the `PAC-ID` itself (e.g. resolution-time or caller/application context) alongside `pac`, without those new fields ever risking a name collision with `issuer`, `identifier`, `categories`, `extensions`, or `as_url`.
+>
 > **Design Choice:** Access to T-REX extension content via JSONPath is not supported: an extension's `data` is always the raw, unparsed payload string, regardless of `type`. No further breakdown is provided for any extension type, since not all extension types can be reliably represented as hierarchical JSON structures, and keeping `extensions` uniform across types keeps queries against it predictable.
 
 
@@ -197,7 +201,7 @@ It is the responsibility of the creator of the resolver configuration to write q
 
 Example:
 ```text
-https://attributes.mettorius.com/{$.categories[0].segments[?(@.key == '21')].value}
+https://attributes.mettorius.com/{$.pac.categories[0].segments[?(@.key == '21')].value}
 ```
 For the `PAC-ID` `HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263`, this resolves to: https://attributes.mettorius.com/210263
 

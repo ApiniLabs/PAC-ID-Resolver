@@ -32,8 +32,8 @@ Each candidate below MUST state its mechanical mapping back to v2. Add new candi
 
 `[key]` (quoted, either `'` or `"`) as shorthand for `[?(@.key == key)]`, to select an element of an array of `{key, ...}` objects by its `key`.
 
-- **v3 form:** `$.categories["-MD"]`
-- **v2 equivalent:** `$.categories[?(@.key == '-MD')]`
+- **v3 form:** `$.pac.categories["-MD"]`
+- **v2 equivalent:** `$.pac.categories[?(@.key == '-MD')]`
 
 Already exists today as an unofficial, Python-only authoring convenience (see [known-implementation-bugs.md](known-implementation-bugs.md), item 2) — it is not part of the current v2 spec and is not guaranteed to be expanded correctly by the reference implementation. Promoting it to an official, well-defined v3 construct would resolve that ambiguity.
 
@@ -42,7 +42,7 @@ Already exists today as an unofficial, Python-only authoring convenience (see [k
 Per [PAC-CAT](https://github.com/ApiniLabs/PAC-CAT), a `PAC-ID`'s categories are now restricted to at most two: the **primary category** (first, describing the item itself) and, optionally, the **issuing system** (second). v3 exposes these directly as named top-level fields in the JSON serialization, instead of requiring positional access into the `categories` array.
 
 - **v3 form:** `$.primary_category` / `$.issuing_system`
-- **v2 equivalent:** `$.categories[0]` / `$.categories[1]`
+- **v2 equivalent:** `$.pac.categories[0]` / `$.pac.categories[1]`
 
 `$.issuing_system` is `null` if no second category is present.
 

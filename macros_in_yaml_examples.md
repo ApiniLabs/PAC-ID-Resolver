@@ -30,13 +30,13 @@ macros:
 
 config:
 # Instruments
-- if: $.categories[?(@.key == '-MD')]
+- if: $.pac.categories[?(@.key == '-MD')]
   entries:
   - <<: *shop
     template_url: https://shop.mettorius.com/instruments
 
 # Consumables
-- if: $.categories[?(@.key == '-MC')]
+- if: $.pac.categories[?(@.key == '-MC')]
   entries:
   - <<: *shop
     template_url: https://shop.mettorius.com/consumables
