@@ -38,7 +38,8 @@ and its equivalent JSON representation:
         "data": "20231211"
       }
     ],
-    "as_url": "HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1*SUM$TREX/11$T.D:20231121+FOO$T.A:BAR*CAL$T.D/20231211"
+    "serialized_as_url_including_extensions": "HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1*SUM$TREX/11$T.D:20231121+FOO$T.A:BAR*CAL$T.D/20231211",
+    "serialized_as_url_without_extensions": "HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1"
   }
 }
 ```
@@ -56,6 +57,7 @@ and its equivalent JSON representation:
 | `$.pac.categories[0].segments[?(@.key == '250')].value` | Returns the value of segment `250`, regardless of who added it — access by `key` is uniform whether the segment came from the original issuer or a third party | `"1"` | True |
 | `$.pac.extensions[?(@.type == 'TREX')].data` | Returns the raw T-REX payload of the `SUM` extension | `"11$T.D:20231121+FOO$T.A:BAR"` | True |
 | `$.pac.identifier[?(@.key == 'FOO')].value` | Tries to match a non-existent identifier key | `[]` | False |
-| `$.pac.as_url` | Returns the `PAC-ID` re-serialized as a URL string, including extensions | `"HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1*SUM$TREX/11$T.D:20231121+FOO$T.A:BAR*CAL$T.D/20231211"` | True |
+| `$.pac.serialized_as_url_including_extensions` | Returns the `PAC-ID` re-serialized as a URL string, including extensions | `"HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1*SUM$TREX/11$T.D:20231121+FOO$T.A:BAR*CAL$T.D/20231211"` | True |
+| `$.pac.serialized_as_url_without_extensions` | Returns the `PAC-ID` re-serialized as a URL string, omitting extensions | `"HTTPS://PAC.METTORIUS.COM/-MD/BAL500/210263/+ACMELABS.COM/250:1"` | True |
 
 
